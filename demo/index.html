@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Blockchain-certificate</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="/cert-web/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="/cert-web/bower_components/iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="/cert-web/bower_components/iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="/cert-web/blockchain-certificate.html">
+    <link rel="import" href="/cert-web/validate-certificate.html">
+	
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+  </head>
+  <body>
+
+    <h2>The &lt;blockchain-certificate&gt; element</h2>
+    <div class="vertical-section-container centered">
+      <h3>Basic blockchain-certificate demo - locally hosted file</h3>
+      <p>Here's how you can render a locally hosted Blockcert.</p>
+      <demo-snippet>
+        <template>
+          <blockchain-certificate href="/cert-web/Valid.json"></blockchain-certificate>
+        </template>
+      </demo-snippet>
+
+    </div>
+    <h2>The &lt;validate-certificate&gt; element</h2>
+    <div class="vertical-section-container centered">
+
+      <h3>Externally hosted valid certificate</h3>
+      <p>This demonstrates verifying a externally hosted Blockcert.</p>
+      <demo-snippet>
+        <template>
+          <validate-certificate>
+          <blockchain-certificate href="https://raw.githubusercontent.com/kuamirul/blockcerts-trial/master/sample.json"></blockchain-certificate>
+		  <!-- <blockchain-certificate href="/cert-web/Valid.json"></blockchain-certificate> -->
+          </validate-certificate>
+        </template>
+      </demo-snippet>
+
+      <!-- <h3>Locally hosted _revoked_ certificate</h3> -->
+      <!-- <p>This demonstrates the verification behavior if a Blockcert is revoked.</p> -->
+      <!-- <demo-snippet> -->
+        <!-- <template> -->
+          <!-- <validate-certificate> -->
+          <!-- <blockchain-certificate href="./sample_cert-revoked-2.0.json"></blockchain-certificate> -->
+          <!-- </validate-certificate> -->
+        <!-- </template> -->
+      <!-- </demo-snippet> -->
+
+      <!-- <h3>blockchain-certificate demo - externally hosted file</h3> -->
+      <!-- <p> -->
+        <!-- You can also render a certificate hosted by another issuer. If they've -->
+        <!-- set up their CORS configuration to allow external hosting, it'll just -->
+        <!-- look like above. If not, then it will show a short message and a link -->
+        <!-- to the hosted certificate. -->
+      <!-- </p> -->
+      <!-- <demo-snippet> -->
+        <!-- <template> -->
+          <!-- <blockchain-certificate href="https://raw.githubusercontent.com/kuamirul/blockcerts-trial/master/test1.json"></blockchain-certificate> -->
+        <!-- </template> -->
+      <!-- </demo-snippet> -->
+    </div>
+  </body>
+</html>
