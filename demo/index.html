@@ -40,8 +40,8 @@ $(document).on('change', '.file-upload-button', function(event) {
 });
 
 function Verify() {
-	document.getElementById("val").setAttribute("hidden", false);
-	document.getElementById("demo").innerHTML = jsonObj;
+	document.getElementById("demo").setAttribute("hidden", false);
+	//document.getElementById("demo").innerHTML = jsonObj.displayHtml;
 }
 
 
@@ -50,6 +50,7 @@ function Verify() {
   <button onclick="Verify()">Verify</button>
   	
 	<p id="val"></p> <br><br>
+	
 	<p id="demo" hidden>
   	
 	<demo-snippet>
