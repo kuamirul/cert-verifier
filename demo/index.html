@@ -40,7 +40,8 @@ $(document).on('change', '.file-upload-button', function(event) {
 });
 
 function Verify() {
-  document.getElementById("demo").innerHTML = jsonObj;
+	p.setAttribute("hidden", false);
+	document.getElementById("demo").innerHTML = jsonObj;
 }
 
 
@@ -48,7 +49,7 @@ function Verify() {
 
   <button onclick="Verify()">Verify</button>
   
-  <p id="demo">
+  <p id="demo" hidden>
   	<demo-snippet>
         <template>
           <blockchain-certificate href="$event.target.result"></blockchain-certificate>
