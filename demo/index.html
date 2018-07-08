@@ -24,28 +24,37 @@
     <input class='file-upload-button' type="file" />
   
   
-  <script>
+<script>
+
+	var jsonObj="No file uploaded";
+
 $(document).on('change', '.file-upload-button', function(event) {
   var reader = new FileReader();
 
   reader.onload = function(event) {
-    var jsonObj = JSON.parse(event.target.result);
-    alert(jsonObj.type);
-	
-	<demo-snippet>
-        <template>
-          <blockchain-certificate href="$event.target.result"></blockchain-certificate>
-        </template>
-    </demo-snippet>
-  
-  
+    jsonObj = JSON.parse(event.target.result);
+	document.getElementById("val").innerHTML = "Successfully uploaded file: " + jsonObj.id + "<br><br>" + "Click the Verify button to start verification";
   }
 
   reader.readAsText(event.target.files[0]);
 });
+
+function Verify() {
+  document.getElementById("demo").innerHTML = jsonObj;
+}
+
+
 </script>
+
+  <button onclick="Verify()">Verify</button>
   
-  
+  <p id="demo">
+  	<demo-snippet>
+        <template>
+          <blockchain-certificate href="$event.target.result"></blockchain-certificate>
+        </template>
+    </demo-snippet>
+  </p>
 
   
     <div class="vertical-section-container centered">
