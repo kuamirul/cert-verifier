@@ -21,7 +21,11 @@
   </head>
   <body>
 
-    <input class='file-upload-button' type="file" id="upload"  />
+    <!-- <input class='file-upload-button' type="file" id="upload"  /> -->
+	
+	<form enctype="multipart/form-data">
+	<input id="upload" type=file   accept="text/html" name="files[]" size=30>
+	</form>
   
   <textarea class="form-control" rows=15 cols=40 id="ms_word_filtered_html"></textarea>
   
