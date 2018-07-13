@@ -55,7 +55,7 @@ function Verify() {
   	
 	<demo-snippet>
         <template>
-          <blockchain-certificate href="$event.target.files[0]"></blockchain-certificate>
+          <blockchain-certificate href="javascript:reader.readAsText(event.target.files[0]);"></blockchain-certificate>
         </template>
     </demo-snippet>
   </p>
