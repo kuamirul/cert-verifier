@@ -73,22 +73,36 @@ function handleFileSelect(evt) {
 
   document.getElementById('upload').addEventListener('change', handleFileSelect, false);
 
+  
+  function Verify() {
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+   }
+  
+  
 </script>
 
   <!-- <button onclick="Verify()">Verify</button> -->
   	
-	<!-- <p id="id="ms_word_filtered_html" ></p> -->
+	<button onclick="Verify()">Click Me</button>
+
+	<div id="myDIV">
+	  	<demo-snippet>
+			<template>
+				<blockchain-certificate href="#ms_word_filtered_html"></blockchain-certificate>
+			</template>
+		</demo-snippet>
+	</div>
+	
+	
+
 	
 	<p id="val"></p> <br><br>
 	
-	<!-- <p id="demo"> -->
-  	
-	<!-- <demo-snippet> -->
-        <!-- <template> -->
-          <!-- <blockchain-certificate href="javascript:reader.readAsText(event.target.files[0]);"></blockchain-certificate> -->
-        <!-- </template> -->
-    <!-- </demo-snippet> -->
-  <!-- </p> -->
 
   
     <div class="vertical-section-container centered">
