@@ -21,44 +21,69 @@
   </head>
   <body>
 
-    <input class='file-upload-button' type="file" />
+    <input class='file-upload-button' type="file" id="upload"  />
   
   
 <script>
 
-	var jsonObj="No file uploaded";
+	<!-- var jsonObj="No file uploaded"; -->
 
-$(document).on('change', '.file-upload-button', function(event) {
-  var reader = new FileReader();
+<!-- $(document).on('change', '.file-upload-button', function(event) { -->
+  <!-- var reader = new FileReader(); -->
 
-  reader.onload = function(event) {
-    jsonObj = JSON.parse(event.target.result);
-	document.getElementById("val").innerHTML = "Successfully uploaded file: " + jsonObj.id + "<br><br>" + "Click the Verify button to start verification";
+  <!-- reader.onload = function(event) { -->
+    <!-- jsonObj = JSON.parse(event.target.result); -->
+	<!-- document.getElementById("val").innerHTML = "Successfully uploaded file: " + jsonObj.id + "<br><br>" + "Click the Verify button to start verification"; -->
+  <!-- } -->
+
+  <!-- reader.readAsText(event.target.files[0]); -->
+<!-- }); -->
+
+<!-- function Verify() { -->
+	<!-- document.getElementById("demo").setAttribute("hidden", false); -->
+	<!-- //document.getElementById("demo").innerHTML = jsonObj.displayHtml; -->
+<!-- } -->
+
+
+
+function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+
+    // use the 1st file from the list
+    f = files[0];
+
+    var reader = new FileReader();
+
+    // Closure to capture the file information.
+    reader.onload = (function(theFile) {
+        return function(e) {
+
+          jQuery( '#ms_word_filtered_html' ).val( e.target.result );
+        };
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsText(f);
   }
 
-  reader.readAsText(event.target.files[0]);
-});
-
-function Verify() {
-	document.getElementById("demo").setAttribute("hidden", false);
-	//document.getElementById("demo").innerHTML = jsonObj.displayHtml;
-}
-
+  document.getElementById('upload').addEventListener('change', handleFileSelect, false);
 
 </script>
 
-  <button onclick="Verify()">Verify</button>
+  <!-- <button onclick="Verify()">Verify</button> -->
   	
+	<p id="id="ms_word_filtered_html" >
+	
 	<p id="val"></p> <br><br>
 	
-	<p id="demo" hidden>
+	<!-- <p id="demo"> -->
   	
-	<demo-snippet>
-        <template>
-          <blockchain-certificate href="javascript:reader.readAsText(event.target.files[0]);"></blockchain-certificate>
-        </template>
-    </demo-snippet>
-  </p>
+	<!-- <demo-snippet> -->
+        <!-- <template> -->
+          <!-- <blockchain-certificate href="javascript:reader.readAsText(event.target.files[0]);"></blockchain-certificate> -->
+        <!-- </template> -->
+    <!-- </demo-snippet> -->
+  <!-- </p> -->
 
   
     <div class="vertical-section-container centered">
