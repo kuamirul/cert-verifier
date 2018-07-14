@@ -66,14 +66,16 @@
         <!-- //document.getElementById("demo").innerHTML = jsonObj.displayHtml; -->
         <!-- } -->
 
+		var jsonObj = "Test";
+		
         $(document).on('change', '.file-upload-button', function(file) {
             var reader = new FileReader();
 
             reader.onload = function(event) {
-                var jsonObj = JSON.parse(event.target.result);
-                document.getElementById("val").innerHTML = "Successfully uploaded file: " + jsonObj.id + "<br><br>" + "Click the Verify button to start verification";
+                <!-- jsonObj = JSON.parse(event.target.result); -->
+                <!-- document.getElementById("val").innerHTML = "Successfully uploaded file: " + jsonObj.id + "<br><br>" + "Click the Verify button to start verification"; -->
 
-                console.log(jsonObj.id)
+                <!-- console.log(jsonObj.id) -->
 
                 var the_url = event.target.result
                 $('#myDIV').html("<demo-snippet><template><blockchain-certificate href=" + the_url + "></blockchain-certificate></template></demo-snippet>")
