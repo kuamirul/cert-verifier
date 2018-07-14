@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
-  <head>
+
+<head>
     <title>Blockchain-certificate</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
@@ -8,160 +9,176 @@
 
     <link rel="import" href="/bower_components/iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="/bower_components/iron-demo-helpers/demo-snippet.html">
-	<link rel="import" href="/bower_components/iron-ajax/iron-ajax.html">
-	<link rel="import" href="/bower_components/polymer/polymer.html">
-	
+    <link rel="import" href="/bower_components/iron-ajax/iron-ajax.html">
+    <link rel="import" href="/bower_components/polymer/polymer.html">
+
     <link rel="import" href="/blockchain-certificate.html">
     <link rel="import" href="/validate-certificate.html">
-	
-	
-	<script  src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-	
-    <style is="custom-style" include="demo-pages-shared-styles">  </style>
-  </head>
-  <body>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+</head>
+
+<body>
 
     <!-- <input class='file-upload-button' type="file" id="upload"  /> -->
-	
-	<form enctype="multipart/form-data">
-	<input id="upload" type=file   accept="text/html" name="files[]" size=30>
-	</form>
-  
-  <textarea class="form-control" rows=15 cols=40 id="ms_word_filtered_html"></textarea>
-  
-<script>
 
-	<!-- var jsonObj="No file uploaded"; -->
+    <form enctype="multipart/form-data">
+        <input id="upload" class='file-upload-button' type=file accept="application/json" name="files[]" size=30>
+    </form>
 
-<!-- $(document).on('change', '.file-upload-button', function(event) { -->
-  <!-- var reader = new FileReader(); -->
+    <!-- <textarea class="form-control" rows=15 cols=40 id="ms_word_filtered_html"></textarea> -->
+    </br></br>
 
-  <!-- reader.onload = function(event) { -->
-    <!-- jsonObj = JSON.parse(event.target.result); -->
-	<!-- document.getElementById("val").innerHTML = "Successfully uploaded file: " + jsonObj.id + "<br><br>" + "Click the Verify button to start verification"; -->
-  <!-- } -->
+    <p id="val"></p> <br><br>
 
-  <!-- reader.readAsText(event.target.files[0]); -->
-<!-- }); -->
-
-<!-- function Verify() { -->
-	<!-- document.getElementById("demo").setAttribute("hidden", false); -->
-	<!-- //document.getElementById("demo").innerHTML = jsonObj.displayHtml; -->
-<!-- } -->
+    <button onclick="Verify()">Verify</button>
 
 
-
-function handleFileSelect(evt) {
-    var files = evt.target.files; // FileList object
-
-    // use the 1st file from the list
-    f = files[0];
-
-    var reader = new FileReader();
-
-    // Closure to capture the file information.
-    reader.onload = (function(theFile) {
-        
-		<!-- return function(e) {jQuery( '#ms_word_filtered_html' ).val( e.target.result ); }; -->
-		
-		var jsonObj = JSON.parse(evt.target.result);
-		document.getElementById("val").innerHTML = "Successfully uploaded file: " + jsonObj.id + "<br><br>" + "Click the Verify button to start verification";
-		console.log(jsonObj.id)
-		
-		
-		the_url = evt.target.result
-		$('#myDIV').html("<demo-snippet><template><blockchain-certificate href=" + the_url + "></blockchain-certificate></template></demo-snippet>")
-	  			
-		
-      })(f);
-
-      // Read in the file as a data URL.
-      reader.readAsText(f);
-  }
-
-  document.getElementById('upload').addEventListener('change', handleFileSelect, false);
+    <div id="myDIV">
+        <!-- <demo-snippet> -->
+        <!-- <template> -->
+        <!-- <blockchain-certificate href="#ms_word_filtered_html"></blockchain-certificate> -->
+        <!-- </template> -->
+        <!-- </demo-snippet> -->
+    </div>
 
 
-  
-  function Verify() {
-    var x = document.getElementById("myDIV");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-   }
- 
+    <script>
+        <!-- var jsonObj="No file uploaded"; -->
 
-	<!-- TEST FUNCTION START -->
-	
-	function renderImage(file) {
+        <!-- $(document).on('change', '.file-upload-button', function(event) { -->
+        <!-- var reader = new FileReader(); -->
 
-	  // generate a new FileReader object
-	  var reader = new FileReader();
+        <!-- reader.onload = function(event) { -->
+        <!-- jsonObj = JSON.parse(event.target.result); -->
+        <!-- document.getElementById("val").innerHTML = "Successfully uploaded file: " + jsonObj.id + "<br><br>" + "Click the Verify button to start verification"; -->
+        <!-- } -->
 
-	  // inject an image with the src url
-	  reader.onload = function(event) {
-		the_url = event.target.result
-		$('#myDIV').html("<demo-snippet><template><blockchain-certificate href=" + the_url + "></blockchain-certificate></template></demo-snippet>")
-	  }
+        <!-- reader.readAsText(event.target.files[0]); -->
+        <!-- }); -->
 
-	  // when the file is read it triggers the onload event above.
-	  reader.readAsDataURL(file);
-	}
-	
-	<!-- TEST FUNCTION END -->
- 
-  
-</script>
+        <!-- function Verify() { -->
+        <!-- document.getElementById("demo").setAttribute("hidden", false); -->
+        <!-- //document.getElementById("demo").innerHTML = jsonObj.displayHtml; -->
+        <!-- } -->
 
-  <!-- <button onclick="Verify()">Verify</button> -->
-  	</br></br>
-	<button onclick="Verify()">Verify</button>
+        $(document).on('change', '.file-upload-button', function(event) {
+            var reader = new FileReader();
 
-	
-	<div id="myDIV">
-	  	<!-- <demo-snippet> -->
-			<!-- <template> -->
-				<!-- <blockchain-certificate href="#ms_word_filtered_html"></blockchain-certificate> -->
-			<!-- </template> -->
-		<!-- </demo-snippet> -->
-	</div>
-	
-	
+            reader.onload = function(event) {
+                var jsonObj = JSON.parse(event.target.result);
+                document.getElementById("val").innerHTML = "Successfully uploaded file: " + jsonObj.id + "<br><br>" + "Click the Verify button to start verification";
 
-	
-	<p id="val"></p> <br><br>
-	
+                console.log(jsonObj.id)
 
-  
+                var the_url = event.target.result
+                $('#myDIV').html("<demo-snippet><template><blockchain-certificate href=" + the_url + "></blockchain-certificate></template></demo-snippet>")
+
+
+            }(f);
+
+
+        reader.readAsText(f);
+        });
+
+        function handleFileSelect(event) {
+            var files = event.target.files; // FileList object
+
+            // use the 1st file from the list
+            f = files[0];
+
+            var reader = new FileReader();
+
+            // Closure to capture the file information.
+            reader.onload = (function(theFile) {
+
+                <!-- return function(e) {jQuery( '#ms_word_filtered_html' ).val( e.target.result ); }; -->
+
+                var jsonObj = JSON.parse(event.target.result);
+                document.getElementById("val").innerHTML = "Successfully uploaded file: " + jsonObj.id + "<br><br>" + "Click the Verify button to start verification";
+                console.log(jsonObj.id)
+
+
+                var the_url = event.target.result
+                $('#myDIV').html("<demo-snippet><template><blockchain-certificate href=" + the_url + "></blockchain-certificate></template></demo-snippet>")
+
+
+            })(f);
+
+            // Read in the file as a data URL.
+            reader.readAsText(f);
+        }
+
+        <!-- document.getElementById('upload').addEventListener('change', handleFileSelect, false); -->
+
+
+
+        function Verify() {
+            var x = document.getElementById("myDIV");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
+
+        <!-- TEST FUNCTION START -->
+
+        function renderImage(file) {
+
+            // generate a new FileReader object
+            var reader = new FileReader();
+
+            // inject an image with the src url
+            reader.onload = function(event) {
+                the_url = event.target.result
+                $('#myDIV').html("<demo-snippet><template><blockchain-certificate href=" + the_url + "></blockchain-certificate></template></demo-snippet>")
+            }
+
+            // when the file is read it triggers the onload event above.
+            reader.readAsDataURL(file);
+        }
+
+        <!-- TEST FUNCTION END -->
+    </script>
+
+    <!-- <button onclick="Verify()">Verify</button> -->
+
+
+
     <div class="vertical-section-container centered">
-      <h3>Basic blockchain-certificate demo - locally hosted file</h3>
-      <p>Render a locally hosted Blockcert.</p>
-      <demo-snippet>
-        <template>
-          <blockchain-certificate href="/Valid.json"></blockchain-certificate>
-        </template>
-      </demo-snippet>
+        <h3>Basic blockchain-certificate demo - locally hosted file</h3>
+        <p>Render a locally hosted Blockcert.</p>
+        <demo-snippet>
+            <template>
+                <blockchain-certificate href="/Valid.json"></blockchain-certificate>
+            </template>
+        </demo-snippet>
 
     </div>
     <h2>The &lt;validate-certificate&gt; element</h2>
     <div class="vertical-section-container centered">
 
-      <h3>Externally hosted valid certificate</h3>
-      <p>This demonstrates verifying a externally hosted Blockcert.</p>
-      <demo-snippet>
-        <template>
-          <validate-certificate>
-          <blockchain-certificate href="https://raw.githubusercontent.com/kuamirul/blockcerts-trial/master/sample.json"></blockchain-certificate>
-		  <!-- <blockchain-certificate href="/cert-web/Valid.json"></blockchain-certificate> -->
-          </validate-certificate>
-        </template>
-      </demo-snippet>
+        <h3>Externally hosted valid certificate</h3>
+        <p>This demonstrates verifying a externally hosted Blockcert.</p>
+        <demo-snippet>
+            <template>
+                <validate-certificate>
+                    <blockchain-certificate href="https://raw.githubusercontent.com/kuamirul/blockcerts-trial/master/sample.json"></blockchain-certificate>
+                    <!-- <blockchain-certificate href="/cert-web/Valid.json"></blockchain-certificate> -->
+                </validate-certificate>
+            </template>
+        </demo-snippet>
 
 
     </div>
-  </body>
+</body>
+
 </html>
 
 
@@ -170,19 +187,19 @@ function handleFileSelect(evt) {
 <!-- <!doctype html> -->
 
 <!-- <html> -->
-  <!-- <head> -->
-    <!-- <title>blockchain-certificate</title> -->
-    <!-- <meta charset="utf-8"> -->
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <!-- <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script> -->
-    <!-- <link rel="import" href="../bower_components/iron-component-page/iron-component-page.html"> -->
-    <!-- <link rel="import" href="../bower_components/blockchain-certificate/blockchain-certificate.html"> -->
-    <!-- <link rel="import" href="../bower_components/blockchain-certificate/validate-certificate.html"> -->
-  <!-- </head> -->
-  <!-- <body> -->
-    <!-- <iron-component-page src="blockchain-certificate.html"></iron-component-page> -->
-  <!-- <validate-certificate> -->
-	<!-- <blockchain-certificate href="https://raw.githubusercontent.com/kuamirul/kuamirul.github.io/master/Valid.json"></blockchain-certificate> -->
-  <!-- </validate-certificate> -->
-  <!-- </body> -->
+<!-- <head> -->
+<!-- <title>blockchain-certificate</title> -->
+<!-- <meta charset="utf-8"> -->
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+<!-- <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script> -->
+<!-- <link rel="import" href="../bower_components/iron-component-page/iron-component-page.html"> -->
+<!-- <link rel="import" href="../bower_components/blockchain-certificate/blockchain-certificate.html"> -->
+<!-- <link rel="import" href="../bower_components/blockchain-certificate/validate-certificate.html"> -->
+<!-- </head> -->
+<!-- <body> -->
+<!-- <iron-component-page src="blockchain-certificate.html"></iron-component-page> -->
+<!-- <validate-certificate> -->
+<!-- <blockchain-certificate href="https://raw.githubusercontent.com/kuamirul/kuamirul.github.io/master/Valid.json"></blockchain-certificate> -->
+<!-- </validate-certificate> -->
+<!-- </body> -->
 <!-- </html> -->
