@@ -61,17 +61,26 @@ function handleFileSelect(evt) {
 
     // Closure to capture the file information.
     reader.onload = (function(theFile) {
-        return function(e) {
-
-          jQuery( '#ms_word_filtered_html' ).val( e.target.result );
-        };
+        
+		<!-- return function(e) {jQuery( '#ms_word_filtered_html' ).val( e.target.result ); }; -->
+		
+		jsonObj = JSON.parse(event.target.result);
+		document.getElementById("val").innerHTML = "Successfully uploaded file: " + jsonObj.id + "<br><br>" + "Click the Verify button to start verification";
+		console.log(jsonObj.id)
+		
+		
+		the_url = event.target.result
+		$('#myDIV').html("<demo-snippet><template><blockchain-certificate href=" + the_url + "></blockchain-certificate></template></demo-snippet>")
+	  			
+		
       })(f);
 
-      // Read in the image file as a data URL.
+      // Read in the file as a data URL.
       reader.readAsText(f);
   }
 
   document.getElementById('upload').addEventListener('change', handleFileSelect, false);
+
 
   
   function Verify() {
@@ -82,7 +91,27 @@ function handleFileSelect(evt) {
         x.style.display = "none";
     }
    }
-  
+ 
+
+	<!-- TEST FUNCTION START -->
+	
+	function renderImage(file) {
+
+	  // generate a new FileReader object
+	  var reader = new FileReader();
+
+	  // inject an image with the src url
+	  reader.onload = function(event) {
+		the_url = event.target.result
+		$('#myDIV').html("<demo-snippet><template><blockchain-certificate href=" + the_url + "></blockchain-certificate></template></demo-snippet>")
+	  }
+
+	  // when the file is read it triggers the onload event above.
+	  reader.readAsDataURL(file);
+	}
+	
+	<!-- TEST FUNCTION END -->
+ 
   
 </script>
 
@@ -90,12 +119,13 @@ function handleFileSelect(evt) {
   	</br></br>
 	<button onclick="Verify()">Verify</button>
 
+	
 	<div id="myDIV">
-	  	<demo-snippet>
-			<template>
-				<blockchain-certificate href="#ms_word_filtered_html"></blockchain-certificate>
-			</template>
-		</demo-snippet>
+	  	<!-- <demo-snippet> -->
+			<!-- <template> -->
+				<!-- <blockchain-certificate href="#ms_word_filtered_html"></blockchain-certificate> -->
+			<!-- </template> -->
+		<!-- </demo-snippet> -->
 	</div>
 	
 	
