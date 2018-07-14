@@ -64,12 +64,12 @@ function handleFileSelect(evt) {
         
 		<!-- return function(e) {jQuery( '#ms_word_filtered_html' ).val( e.target.result ); }; -->
 		
-		var jsonObj = JSON.parse(event.target.result);
+		var jsonObj = JSON.parse(evt.target.result);
 		document.getElementById("val").innerHTML = "Successfully uploaded file: " + jsonObj.id + "<br><br>" + "Click the Verify button to start verification";
 		console.log(jsonObj.id)
 		
 		
-		the_url = event.target.result
+		the_url = evt.target.result
 		$('#myDIV').html("<demo-snippet><template><blockchain-certificate href=" + the_url + "></blockchain-certificate></template></demo-snippet>")
 	  			
 		
