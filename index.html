@@ -64,7 +64,7 @@ function handleFileSelect(evt) {
         
 		<!-- return function(e) {jQuery( '#ms_word_filtered_html' ).val( e.target.result ); }; -->
 		
-		jsonObj = JSON.parse(event.target.result);
+		var jsonObj = JSON.parse(event.target.result);
 		document.getElementById("val").innerHTML = "Successfully uploaded file: " + jsonObj.id + "<br><br>" + "Click the Verify button to start verification";
 		console.log(jsonObj.id)
 		
