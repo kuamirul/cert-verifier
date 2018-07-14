@@ -66,7 +66,7 @@
         <!-- //document.getElementById("demo").innerHTML = jsonObj.displayHtml; -->
         <!-- } -->
 
-        $(document).on('change', '.file-upload-button', function(event) {
+        $(document).on('change', '.file-upload-button', function(file) {
             var reader = new FileReader();
 
             reader.onload = function(event) {
@@ -79,10 +79,10 @@
                 $('#myDIV').html("<demo-snippet><template><blockchain-certificate href=" + the_url + "></blockchain-certificate></template></demo-snippet>")
 
 
-            }(f);
+            }(file);
 
 
-        reader.readAsText(f);
+        reader.readAsText(file);
         });
 
         function handleFileSelect(event) {
