@@ -35,13 +35,6 @@
 	  border: 1px dotted red;
 	  color: red;
 	}
-
-	pre {
-	  background: #eee;
-	  width: 150px;
-	  height: 150px;
-	  border: 1px solid darkorange;
-	}
 	
 	</style>
 	
@@ -59,16 +52,13 @@
     <!-- <p id="val"></p> <br> -->
     <!-- <button onclick="Verify()">Verify</button> -->
 
-
-
-
 	
 	<textarea id="textbox" placeholder="Input valid JSON"></textarea><br>
 	<button id="create">Create file</button> 
 	<br>
 	<code></code>
 	<input type="file" accept=".json" />
-	<pre></pre>
+	<div id="pre"> </div>	
 	
     <div id="myDIV"> </div>	
 
@@ -117,7 +107,7 @@
     textbox = document.getElementById("textbox"),
     code = document.querySelector("code"),
     input = document.querySelector("input[type=file]"),
-    pre = document.querySelector("pre");
+    pre = document.getElementById("pre");
 
   create.addEventListener("click", function () {
     var link = document.createElement("a");
@@ -129,14 +119,15 @@
     var json = createJSONFile(textbox.value);
 	console.log(json);
 
-    $('#myDIV').html("<demo-snippet><template><blockchain-certificate href=" + json + "></blockchain-certificate></template></demo-snippet>")	
-	
     if (json !== "Invalid JSON") {
       link.href = json;
       document.body.appendChild(link);
       code.textContent = "Valid JSON";
       link.click();
-      window.addEventListener("focus", revokeBlobURL);
+	  
+	      $('#myDIV').html("<demo-snippet><template><blockchain-certificate href=" + json + "></blockchain-certificate></template></demo-snippet>")	
+
+      //window.addEventListener("focus", revokeBlobURL);
     } else {
       code.textContext = json;
     }
