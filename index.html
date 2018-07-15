@@ -84,7 +84,10 @@
       else {
         code.classList.remove("invalid");
         file = new File([json], "info.json", {type:"application/json"});
-        url = URL.createObjectURL(file);
+        
+		$('#myDIV').html("<demo-snippet><template><blockchain-certificate href=" + file + "></blockchain-certificate></template></demo-snippet>")	
+		
+		url = URL.createObjectURL(file);
 		console.log(url);
         return url;
       }
@@ -111,8 +114,6 @@
 
   create.addEventListener("click", function () {
     var link = document.createElement("a");
-	<!-- var link2 = document.createElement("blockchain-certificate"); -->
-
 	console.log(link);
 
     link.setAttribute("download", "info.json");
@@ -125,9 +126,7 @@
       code.textContent = "Valid JSON";
       link.click();
 	  
-	      $('#myDIV').html("<demo-snippet><template><blockchain-certificate href=" + json + "></blockchain-certificate></template></demo-snippet>")	
-
-      //window.addEventListener("focus", revokeBlobURL);
+      window.addEventListener("focus", revokeBlobURL);
     } else {
       code.textContext = json;
     }
