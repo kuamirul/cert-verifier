@@ -60,7 +60,7 @@
     <!-- <button onclick="Verify()">Verify</button> -->
 
 
-    <div id="myDIV"> </div>
+
 
 	
 	<textarea id="textbox" placeholder="Input valid JSON"></textarea><br>
@@ -70,7 +70,7 @@
 	<input type="file" accept=".json" />
 	<pre></pre>
 	
-	
+    <div id="myDIV"> </div>	
 
     <script>
 
@@ -121,18 +121,18 @@
 
   create.addEventListener("click", function () {
     var link = document.createElement("a");
-	var link2 = document.createElement("blockchain-certificate");
+	<!-- var link2 = document.createElement("blockchain-certificate"); -->
+
 	console.log(link);
-	console.log(link2);
-	
+
     link.setAttribute("download", "info.json");
     var json = createJSONFile(textbox.value);
 	console.log(json);
+
+    $('#myDIV').html("<demo-snippet><template><blockchain-certificate href=" + json + "></blockchain-certificate></template></demo-snippet>")	
 	
     if (json !== "Invalid JSON") {
       link.href = json;
-	  link2.href = json; //
-	  
       document.body.appendChild(link);
       code.textContent = "Valid JSON";
       link.click();
