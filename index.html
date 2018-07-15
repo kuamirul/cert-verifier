@@ -133,7 +133,7 @@
   }, false);
   
   reader.addEventListener("load", function() {
-    pre.textContent = JSON.stringify(reader.result, null, 2);
+    pre.textContent = JSON.parse(reader.result, null, 2);
   });
   
   input.addEventListener("change", readJSON);
