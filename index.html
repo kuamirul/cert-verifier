@@ -84,8 +84,8 @@
       else {
         code.classList.remove("invalid");
         file = new File([json], "info.json", {type:"application/json"});
-        
-		$('#myDIV').html("<demo-snippet><template><blockchain-certificate href=" + file + "></blockchain-certificate></template></demo-snippet>")	
+
+		$('#myDIV').html("<demo-snippet><template><blockchain-certificate href=" + file.name + "></blockchain-certificate></template></demo-snippet>")	
 		
 		url = URL.createObjectURL(file);
 		console.log(url);
