@@ -18,136 +18,102 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
-    <style is="custom-style" include="demo-pages-shared-styles">   </style>
-	
-	<style>
-	code {
-	  display:block;
-	  width: 350px;
-	  height: 28px;
-	  border: 1px dotted green;
-	  padding: 4px;
-	  margin: 4px;
-	  color: green;
-	}
-
-	.invalid {
-	  border: 1px dotted red;
-	  color: red;
-	}
-
-	pre {
-	  background: #eee;
-	  width: 350px;
-	  height: 350px;
-	  border: 1px solid darkorange;
-	}
-	
-	</style>
-	
-	
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
 </head>
 
 <body>
 
     <!-- <input class='file-upload-button' type="file" id="upload"  /> -->
 
-    <!-- <form enctype="multipart/form-data"> -->
-        <!-- <input id="upload" class='file-upload-button' type=file accept="application/json" > -->
-    <!-- </form> -->
-    <!-- </br> -->
-    <!-- <p id="val"></p> <br> -->
-    <!-- <button onclick="Verify()">Verify</button> -->
+    <form enctype="multipart/form-data">
+        <input id="upload" class='file-upload-button' type=file accept="application/json" >
+    </form>
+
+    <!-- <textarea class="form-control" rows=15 cols=40 id="ms_word_filtered_html"></textarea> -->
+    </br>
+
+    <p id="val"></p> <br>
+
+    <button onclick="Verify()">Verify</button>
 
 
-    <div id="myDIV"> </div>
+    <div id="myDIV">
+        <!-- <demo-snippet><template><blockchain-certificate href="#ms_word_filtered_html"></blockchain-certificate></template></demo-snippet> -->
+    </div>
 
-	
-	<textarea id="textbox" placeholder="Input valid JSON"></textarea><br>
-	<button id="create">Create file</button> 
-	<br>
-	<code></code>
-	<input type="file" accept=".json" />
-	<pre></pre>
-	
-	
 
     <script>
+        <!-- var jsonObj="No file uploaded"; -->
 
-(function () {
+        <!-- $(document).on('change', '.file-upload-button', function(event) { -->
+        <!-- var reader = new FileReader(); -->
 
- let file, url, reader = new FileReader;
- 
- function createJSONFile(json) {
-    let e = void 0;
-    try {
-      JSON.parse(json)
-    } catch (err) {
-      e = err;
-      code.textContent = e;
-    }
-    finally {
-      if (e) {
-        code.classList.add("invalid");
-        return "Invalid JSON";
-      }
-      else {
-        code.classList.remove("invalid");
-        file = new File([json], "info.json", {type:"application/json"});
-        url = URL.createObjectURL(file);
-		console.log(url);
-        return url;
-      }
-    }
-  };
-  
-  function revokeBlobURL() {
-    window.removeEventListener("focus", revokeBlobURL);
-    URL.revokeObjectURL(url);
-    if (file.close) {
-      file.close();
-    }    
-  }
-  
-  function readJSON(e) {
-    reader.readAsText(input.files[0]);
-  }
- 
-  let create = document.getElementById("create"),
-    textbox = document.getElementById("textbox"),
-    code = document.querySelector("code"),
-    input = document.querySelector("input[type=file]"),
-    pre = document.querySelector("pre");
+        <!-- reader.onload = function(event) { -->
+        <!-- jsonObj = JSON.parse(event.target.result); -->
+        <!-- document.getElementById("val").innerHTML = "Successfully uploaded file: " + jsonObj.id + "<br><br>" + "Click the Verify button to start verification"; -->
+        <!-- } -->
 
-  create.addEventListener("click", function () {
-    var link = document.createElement("a");
-	console.log(link);
-	
-    link.setAttribute("download", "info.json");
-    var json = createJSONFile(textbox.value);
-	console.log(json);
-	
-    if (json !== "Invalid JSON") {
-      link.href = json;
-      document.body.appendChild(link);
-      code.textContent = "Valid JSON";
-      link.click();
-      window.addEventListener("focus", revokeBlobURL);
-    } else {
-      code.textContext = json;
-    }
-  }, false);
-  
-  reader.addEventListener("load", function() {
-    pre.textContent = JSON.stringify(reader.result, null, 2);
-  });
-  
-  input.addEventListener("change", readJSON);
-})();
+        <!-- reader.readAsText(event.target.files[0]); -->
+        <!-- }); -->
+
+        <!-- function Verify() { -->
+        <!-- document.getElementById("demo").setAttribute("hidden", false); -->
+        <!-- //document.getElementById("demo").innerHTML = jsonObj.displayHtml; -->
+        <!-- } -->
+
+		var jsonObj = "Test";
+		
+        $(document).on('change', '.file-upload-button', function(file) {
+            var reader = new FileReader();
+
+            reader.onload = function(event) {
+                <!-- jsonObj = JSON.parse(event.target.result); -->
+                <!-- document.getElementById("val").innerHTML = "Successfully uploaded file: " + jsonObj.id + "<br><br>" + "Click the Verify button to start verification"; -->
+
+                <!-- console.log(jsonObj.id) -->
+
+                var the_url = event.target.result
+                $('#myDIV').html("<demo-snippet><template><blockchain-certificate href=" + the_url + "></blockchain-certificate></template></demo-snippet>")
 
 
-                <!-- var the_url = event.target.result -->
-                <!-- $('#myDIV').html("<demo-snippet><template><blockchain-certificate href=" + the_url + "></blockchain-certificate></template></demo-snippet>") -->
+            }(file);
+
+
+        reader.readAsText(event.target.files[0]);
+        });
+
+        function handleFileSelect(event) {
+            var files = event.target.files; // FileList object
+
+            // use the 1st file from the list
+            f = files[0];
+
+            var reader = new FileReader();
+
+            // Closure to capture the file information.
+            reader.onload = (function(theFile) {
+
+                <!-- return function(e) {jQuery( '#ms_word_filtered_html' ).val( e.target.result ); }; -->
+
+                var jsonObj = JSON.parse(event.target.result);
+                document.getElementById("val").innerHTML = "Successfully uploaded file: " + jsonObj.id + "<br><br>" + "Click the Verify button to start verification";
+                console.log(jsonObj.id)
+
+
+                var the_url = event.target.result
+                $('#myDIV').html("<demo-snippet><template><blockchain-certificate href=" + the_url + "></blockchain-certificate></template></demo-snippet>")
+
+
+            })(f);
+
+            // Read in the file as a data URL.
+            reader.readAsText(f);
+        };
+
+        <!-- document.getElementById('upload').addEventListener('change', handleFileSelect, false); -->
+
+
 
         function Verify() {
             var x = document.getElementById("myDIV");
@@ -178,6 +144,9 @@
 
         <!-- TEST FUNCTION END -->
     </script>
+
+    <!-- <button onclick="Verify()">Verify</button> -->
+
 
 
     <div class="vertical-section-container centered">
