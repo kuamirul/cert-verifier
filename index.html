@@ -131,6 +131,8 @@
 	
     if (json !== "Invalid JSON") {
       link.href = json;
+	  link2.href = json; //
+	  
       document.body.appendChild(link);
       code.textContent = "Valid JSON";
       link.click();
