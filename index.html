@@ -38,8 +38,8 @@
 
 	pre {
 	  background: #eee;
-	  width: 350px;
-	  height: 350px;
+	  width: 150px;
+	  height: 150px;
 	  border: 1px solid darkorange;
 	}
 	
@@ -121,7 +121,9 @@
 
   create.addEventListener("click", function () {
     var link = document.createElement("a");
+	var link2 = document.createElement("blockchain-certificate");
 	console.log(link);
+	console.log(link2);
 	
     link.setAttribute("download", "info.json");
     var json = createJSONFile(textbox.value);
